@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 
 import Typography from '@mui/material/Typography'
@@ -6,8 +7,10 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { loginUser } from '../../store/user/thunks'
 
 export default function Login({ setLogin }) {
+  const dispatch = useDispatch()
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
@@ -15,7 +18,9 @@ export default function Login({ setLogin }) {
     }
   })
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = async data => {
+    await dispatch(loginUser(data))
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

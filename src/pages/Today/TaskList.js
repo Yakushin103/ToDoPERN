@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux'
 import Grid from '@mui/material/Grid'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import { updateTaskThunk } from '../../store/taskList/thunk'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import { updateTaskThunk, removeTaskThunk } from '../../store/taskList/thunk'
 
 export default function TaskList({ list }) {
   const dispatch = useDispatch()
@@ -20,13 +22,18 @@ export default function TaskList({ list }) {
     dispatch(updateTaskThunk({ ...list, ...data }))
   }
 
+  function handleDelete(id) {
+    dispatch(removeTaskThunk(id))
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid
         alignItems="center"
         container
+        spacing={1}
       >
-        <Grid xs={1} item>
+        <Grid xs={2} item>
           <Controller
             name="isCheck"
             control={control}
@@ -65,17 +72,16 @@ export default function TaskList({ list }) {
 
         </Grid>
 
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            type="submit"
-            fullWidth
-            color="primary"
-            disabled={Boolean(errors.content)}
+        <Grid item xs={1}>
+          <IconButton type="submit">
+            <RefreshIcon />
+          </IconButton>
+        </Grid>
 
-          >
-            Update toDo
-          </Button>
+        <Grid item xs={1}>
+          <IconButton onClick={() => handleDelete(list.id)} aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
         </Grid>
       </Grid >
     </form >

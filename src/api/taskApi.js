@@ -16,10 +16,15 @@ export const updateTask = async (data) => {
   return await instance.post(`/api/tasks/update`, data).then(res => res.data)
 }
 
+export const removeTask = async (id) => {
+  return await instance.delete(`/api/tasks/delete?id=${id}`).then(res => res.data)
+}
+
 const taskApi = {
   addTask,
   getTodayTasks,
-  updateTask
+  updateTask,
+  removeTask
 }
 
 export default taskApi

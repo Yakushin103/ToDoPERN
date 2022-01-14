@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 
 import taskApi from '../../api/taskApi'
-import { addTask, getTodayTasks, updateTask } from './reducer'
+import { addTask, getTodayTasks, updateTask, removeTask } from './reducer'
 
 export const addNewTask = createAsyncThunk(
   'taskList/addTask',
@@ -28,6 +28,22 @@ export const updateTaskThunk = createAsyncThunk(
       if (data.serverStatus === 2) {
         dispatch(updateTask(arg))
         toast.success('Данные были обновлены')
+      }
+    } catch (err) {
+      toast.error('Что то пошло не так!')
+      // dispatch(addTask(null))
+    }
+  }
+)
+
+export const removeTaskThunk = createAsyncThunk(
+  'taskList/removeTaskThunk',
+  async (arg, { dispatch }) => {
+    try {
+      const { data } = await taskApi.removeTask(arg)
+      if (data.serverStatus === 2) {
+        dispatch(removeTask(arg))
+        toast.success('Данные были удаленны')
       }
     } catch (err) {
       toast.error('Что то пошло не так!')

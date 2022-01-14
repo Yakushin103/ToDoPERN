@@ -50,7 +50,9 @@ export default function Today() {
     >
       <Grid item>
         <List>
-          <ListItem>
+          <ListItem
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             <Typography>
               ToDo on today
             </Typography>

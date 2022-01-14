@@ -20,6 +20,9 @@ const mainSlice = createSlice({
         return task
       })
     },
+    removeTask: (store, { payload }) => {
+      store.todayTaskList = store.todayTaskList.filter(task => task.id !== payload)
+    },
     getTodayTasks: (store, { payload }) => {
       store.todayTaskList = payload
     },
@@ -29,7 +32,8 @@ const mainSlice = createSlice({
 export const {
   addTask,
   getTodayTasks,
-  updateTask
+  updateTask,
+  removeTask
 } = mainSlice.actions
 
 export default mainSlice.reducer

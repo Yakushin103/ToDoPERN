@@ -2,7 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 
 import taskApi from '../../api/taskApi'
-import { addTask, getTodayTasks, updateTask, removeTask } from './reducer'
+import {
+  addTask,
+  getTodayTasks,
+  updateTask,
+  removeTask,
+  getWeekTasksList
+} from './reducer'
 
 export const addNewTask = createAsyncThunk(
   'taskList/addTask',
@@ -60,6 +66,19 @@ export const getTodayTasksList = createAsyncThunk(
       dispatch(getTodayTasks(list))
     } catch (err) {
       dispatch(getTodayTasks([]))
+      toast.error('Что то пошло не так!')
+    }
+  }
+)
+
+export const getWeekTasksListThunk = createAsyncThunk(
+  'taskList/getWeekTasksList',
+  async (arg, { dispatch }) => {
+    try {
+      const { list } = await taskApi.getWeekTasksList()
+      dispatch(getWeekTasksList(list))
+    } catch (err) {
+      // dispatch(getWeekTasksList([]))
       toast.error('Что то пошло не так!')
     }
   }

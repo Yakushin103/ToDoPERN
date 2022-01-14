@@ -6,6 +6,7 @@ import lazyWrapper from '../utils/HOK/lazyWrapper'
 import Header from '../components/Header'
 
 const Today = lazyWrapper(lazy(() => import('../pages/Today/Today')))
+const Week = lazyWrapper(lazy(() => import('../pages/Week/Week')))
 // const Product = lazyWrapper(lazy(() => import('../pages/Product/Product')))
 // const Create = lazyWrapper(lazy(() => import('../pages/Create/Create')))
 // const Edit = lazyWrapper(lazy(() => import('../pages/Edit/Edit')))
@@ -22,6 +23,7 @@ export default function Router() {
       <Routes>
         {/* <Route path="/" element={<Header />}> */}
           <Route path="/today" element={<Today />} />
+          <Route path="/week" element={<Week />} />
           {/* <Route path="invoices" element={<Invoices />} />
           <Route path="activity" element={<Activity />} /> */}
         {/* </Route> */}

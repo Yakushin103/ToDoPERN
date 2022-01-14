@@ -20,11 +20,16 @@ export const removeTask = async (id) => {
   return await instance.delete(`/api/tasks/delete?id=${id}`).then(res => res.data)
 }
 
+export const getWeekTasksList = async () => {
+  return await instance.get(`/api/tasks/week`).then(res => res.data)
+}
+
 const taskApi = {
   addTask,
   getTodayTasks,
   updateTask,
-  removeTask
+  removeTask,
+  getWeekTasksList
 }
 
 export default taskApi

@@ -8,6 +8,7 @@ const store = configureStore({
     task,
     user
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 })
 
 export default store

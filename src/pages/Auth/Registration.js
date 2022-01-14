@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
+import { useNavigate } from 'react-router-dom'
 
 import Typography from '@mui/material/Typography'
 import List from '@mui/material/List'
@@ -11,6 +12,7 @@ import { registerUser } from '../../store/user/thunks'
 
 export default function Registration({ setLogin }) {
   const dispatch = useDispatch()
+  const navigate  = useNavigate()
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
@@ -24,6 +26,7 @@ export default function Registration({ setLogin }) {
       return
     }
     dispatch(registerUser({ email, password }))
+    navigate('/today')
   }
 
   return (

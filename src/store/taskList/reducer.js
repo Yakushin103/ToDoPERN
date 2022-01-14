@@ -1,21 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const getInitialStore = () => ({
-  task: []
+  taskList: [],
+  todayTaskList: []
 })
 
 const mainSlice = createSlice({
-  name: 'task',
+  name: 'taskList',
   initialState: getInitialStore(),
   reducers: {
     addTask: (store, { payload }) => {
-      store.task.push(payload)
+      store.todayTaskList.push(payload)
+    },
+    updateTask: (store, { payload }) => {
+      store.todayTaskList = store.todayTaskList.map(task => {
+        if (task.id === payload.id) {
+          return task = payload
+        }
+        return task
+      })
+    },
+    getTodayTasks: (store, { payload }) => {
+      store.todayTaskList = payload
     },
   }
 })
 
 export const {
-  addTask
+  addTask,
+  getTodayTasks,
+  updateTask
 } = mainSlice.actions
 
 export default mainSlice.reducer

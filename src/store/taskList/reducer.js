@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const getInitialStore = () => ({
   taskList: [],
   todayTaskList: [],
-  weekList: []
+  weekList: [],
+  searchList: []
 })
 
 const mainSlice = createSlice({
@@ -30,6 +31,9 @@ const mainSlice = createSlice({
     getWeekTasksList: (store, { payload }) => {
       store.weekList = payload
     },
+    getSearchTasksList: (store, { payload }) => {
+      store.searchList = payload
+    },
   }
 })
 
@@ -38,7 +42,8 @@ export const {
   getTodayTasks,
   updateTask,
   removeTask,
-  getWeekTasksList
+  getWeekTasksList,
+  getSearchTasksList
 } = mainSlice.actions
 
 export default mainSlice.reducer

@@ -19,8 +19,11 @@ export default function Week() {
       justifyContent="center"
       container
     >
-      <Grid item xs={10}>
-        <TableWeek list={list} />
+      <Grid item xs={12} md={10}>
+        <TableWeek
+          week={true}
+          list={list}
+        />
       </Grid>
     </Grid>
   )

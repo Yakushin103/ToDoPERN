@@ -7,7 +7,8 @@ import {
   getTodayTasks,
   updateTask,
   removeTask,
-  getWeekTasksList
+  getWeekTasksList,
+  getSearchTasksList
 } from './reducer'
 
 export const addNewTask = createAsyncThunk(
@@ -83,3 +84,17 @@ export const getWeekTasksListThunk = createAsyncThunk(
     }
   }
 )
+
+export const getSearchTasksListThunk = createAsyncThunk(
+  'taskList/getSearchTasksList',
+  async (arg, { dispatch }) => {
+    try {
+      const { list } = await taskApi.getSearchTasksList(arg)
+      dispatch(getSearchTasksList(list))
+    } catch (err) {
+      dispatch(getSearchTasksList([]))
+      toast.error('Что то пошло не так!')
+    }
+  }
+)
+

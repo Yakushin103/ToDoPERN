@@ -5,12 +5,10 @@ import { Route, Routes } from 'react-router-dom'
 import lazyWrapper from '../utils/HOK/lazyWrapper'
 import Header from '../components/Header'
 
+const Auth = lazyWrapper(lazy(() => import('../pages/Auth/Auth')))
 const Today = lazyWrapper(lazy(() => import('../pages/Today/Today')))
 const Week = lazyWrapper(lazy(() => import('../pages/Week/Week')))
-// const Product = lazyWrapper(lazy(() => import('../pages/Product/Product')))
-// const Create = lazyWrapper(lazy(() => import('../pages/Create/Create')))
-// const Edit = lazyWrapper(lazy(() => import('../pages/Edit/Edit')))
-const Auth = lazyWrapper(lazy(() => import('../pages/Auth/Auth')))
+const Search = lazyWrapper(lazy(() => import('../pages/Search/Search')))
 
 export default function Router() {
   const isAuth = useSelector(({ user }) => user.isAuth)
@@ -21,21 +19,10 @@ export default function Router() {
     <div>
       <Header />
       <Routes>
-        {/* <Route path="/" element={<Header />}> */}
           <Route path="/today" element={<Today />} />
           <Route path="/week" element={<Week />} />
-          {/* <Route path="invoices" element={<Invoices />} />
-          <Route path="activity" element={<Activity />} /> */}
-        {/* </Route> */}
+          <Route path="/search" element={<Search />} />
       </Routes>
-
-      {/* <Routes>
-        <Route
-          path="/today"
-          element={Today}
-          exact
-        />
-      </Routes> */}
     </div>
   )
 }

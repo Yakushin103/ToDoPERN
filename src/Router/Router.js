@@ -9,6 +9,7 @@ const Auth = lazyWrapper(lazy(() => import('../pages/Auth/Auth')))
 const Today = lazyWrapper(lazy(() => import('../pages/Today/Today')))
 const Week = lazyWrapper(lazy(() => import('../pages/Week/Week')))
 const Search = lazyWrapper(lazy(() => import('../pages/Search/Search')))
+const Analytics = lazyWrapper(lazy(() => import('../pages/Analytics/Analytics')))
 
 export default function Router() {
   const isAuth = useSelector(({ user }) => user.isAuth)
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path="/today" element={<Today />} />
           <Route path="/week" element={<Week />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/analytics" element={<Analytics />} />
       </Routes>
     </div>
   )

@@ -20,8 +20,6 @@ export default function Search() {
     dispatch(getSearchTasksListThunk(moment(value).format('MM/DD/YYYY')))
   }, [value, dispatch])
 
-  console.log('list', list)
-
   return (
     <Grid
       sx={{ height: "80vh", textAlign: "center", marginTop: '2rem' }}

@@ -4,7 +4,8 @@ const getInitialStore = () => ({
   taskList: [],
   todayTaskList: [],
   weekList: [],
-  searchList: []
+  searchList: [],
+  analyticsArr: [50, 50]
 })
 
 const mainSlice = createSlice({
@@ -34,6 +35,9 @@ const mainSlice = createSlice({
     getSearchTasksList: (store, { payload }) => {
       store.searchList = payload
     },
+    getAnalyticsData: (store, { payload }) => {
+      store.analyticsArr = payload
+    },
   }
 })
 
@@ -43,7 +47,8 @@ export const {
   updateTask,
   removeTask,
   getWeekTasksList,
-  getSearchTasksList
+  getSearchTasksList,
+  getAnalyticsData
 } = mainSlice.actions
 
 export default mainSlice.reducer

@@ -28,13 +28,18 @@ export const getSearchTasksList = async (date) => {
   return await instance.get(`/api/tasks/search?date=${date}`).then(res => res.data)
 }
 
+export const getAnalyticsData = async () => {
+  return await instance.get(`/api/tasks/analytics`).then(res => res.data)
+}
+
 const taskApi = {
   addTask,
   getTodayTasks,
   updateTask,
   removeTask,
   getWeekTasksList,
-  getSearchTasksList
+  getSearchTasksList,
+  getAnalyticsData
 }
 
 export default taskApi
